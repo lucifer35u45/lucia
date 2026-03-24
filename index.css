@@ -1,0 +1,140 @@
+/* Fondo general con imagen personalizada */
+body {
+  background: url("fondo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Tahoma, sans-serif;
+  padding: 40px;
+}
+
+/* --- Ventana XP con marco doble --- */
+.xp-window {
+  width: 650px;
+  background: #ece9d8;
+  border: 3px solid #0a246a; /* borde azul oscuro */
+  outline: 2px solid #3a6ea5; /* borde azul claro exterior */
+  border-radius: 0;
+  box-shadow: 6px 6px 15px rgba(0,0,0,0.5);
+}
+
+/* --- Barra de título XP (azul → blanco) --- */
+.xp-titlebar {
+  background: linear-gradient(to right, #0a64ad, #ffffff);
+  color: white;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 1px solid #083a6b;
+  height: 28px;
+}
+
+.xp-title {
+  font-size: 14px;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+/* --- Botón cerrar XP --- */
+.xp-buttons .xp-btn {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: url('https://i.imgur.com/7y7Wc.png');
+  cursor: pointer;
+}
+
+/* --- Pestañas XP con relieve --- */
+.xp-tabs {
+  display: flex;
+  background: #d4d0c8;
+  border-bottom: 1px solid #808080;
+  padding-left: 6px;
+}
+
+.xp-tab {
+  padding: 6px 12px;
+  border: 1px solid #808080;
+  border-bottom: none;
+  background: #e4e0d8;
+  margin-right: 4px;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: inset 1px 1px 0 #ffffff;
+}
+
+.xp-tab.active {
+  background: #ffffff;
+  font-weight: bold;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* --- Contenido XP --- */
+.xp-content {
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #808080;
+  border-top: none;
+}
+
+/* --- Vista previa XP (como en la imagen) --- */
+.xp-preview {
+  width: 90%;
+  height: 120px;
+  background: #d4d0c8;
+  border: 2px solid #808080;
+  margin: 10px auto;
+  padding: 10px;
+  box-shadow: inset 2px 2px 3px #ffffff;
+}
+
+/* --- Botones OK / Cancel / Apply estilo XP --- */
+.xp-buttons-bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.xp-btn-bottom {
+  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+  border: 1px solid #7f9db9;
+  padding: 5px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+.xp-btn-bottom:hover {
+  background: linear-gradient(to bottom, #ffffff, #c8c8c8);
+}
+
+/* Inputs XP */
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #7f9db9;
+  background: white;
+}
+
+/* Tabla XP */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #808080;
+  padding: 6px;
+  background: #f5f5f5;
+}
+
+th {
+  background: #d4d0c8;
+}

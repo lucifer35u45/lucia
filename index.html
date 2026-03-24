@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Dispositivos</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div class="xp-window">
+
+    <div class="xp-titlebar">
+        <span class="xp-title">Control de Inventario</span>
+        <div class="xp-buttons">
+            <button class="xp-btn">_</button>
+            <button class="xp-btn">□</button>
+            <button class="xp-btn">X</button>
+        </div>
+    </div>
+
+    <div class="xp-tabs">
+        <a href="index.html" class="xp-tab active">Inicio</a>
+        <a href="Registros.html" class="xp-tab">Registros</a>
+    </div>
+
+    <div class="xp-content">
+
+        <main>
+
+            <section class="seccion-formulario">
+
+                <div class="contenedor">
+
+                    <form id="formulario">
+
+                        <div class="grupo">
+                            <div class="campo">
+                                <label>Tipo de dispositivo</label>
+                                <input type="text" id="tipo" placeholder="Ej: PC, Portatil" required>
+                            </div>
+
+                            <div class="campo">
+                                <label>Marca</label>
+                                <input type="text" id="marca" placeholder="Ej: HP, Dell" required>
+                            </div>
+                        </div>
+
+                        <div class="grupo">
+                            <div class="campo">
+                                <label>Modelo</label>
+                                <input type="text" id="modelo" required>
+                            </div>
+
+                            <div class="campo">
+                                <label>Número de serie</label>
+                                <input type="text" id="serie" required>
+                            </div>
+                        </div>
+
+                        <div class="acciones">
+                            <button type="submit">Guardar Registro</button>
+                        </div>
+
+                    </form>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+                    <script src="index.js"></script>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div> <!-- xp-content -->
+
+</div> <!-- xp-window -->
+
+</body>
+</html>

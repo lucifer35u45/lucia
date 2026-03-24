@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div class="xp-window">
+
+    <div class="xp-titlebar">
+        <span class="xp-title">Control de Inventario</span>
+        <div class="xp-buttons">
+            <button class="xp-btn">_</button>
+            <button class="xp-btn">□</button>
+            <button class="xp-btn">X</button>
+        </div>
+    </div>
+
+    <div class="xp-tabs">
+        <a href="index.html" class="xp-tab">Inicio</a>
+        <a href="Registros.html" class="xp-tab active">Registros</a>
+    </div>
+
+    <div class="xp-content">
+
+        <main>
+
+            <section class="seccion-tabla">
+
+                <div class="contenedor-tabla">
+                    <h2>Registros almacenados 📋</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Nº Serie</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaRegistros"></tbody>
+
+                </table>
+
+                <div class="acciones-tabla">
+                    <button onclick="borrarRegistros()">🗑️ Borrar todos</button>
+                </div>
+
+            </section>
+
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+        <script src="index.js"></script>
+
+    </div> <!-- xp-content -->
+
+</div> <!-- xp-window -->
+
+</body>
+</html>
