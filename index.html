@@ -2,78 +2,132 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de Dispositivos</title>
+    <title>Inventario | Inicio</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-<div class="xp-window">
-
-    <div class="xp-titlebar">
-        <span class="xp-title">Control de Inventario</span>
-        <div class="xp-buttons">
-            <button class="xp-btn">_</button>
-            <button class="xp-btn">□</button>
-            <button class="xp-btn">X</button>
-        </div>
+<div id="pantalla-login" class="overlay">
+    <div class="modal-box">
+        <h2>🔑 Iniciar Sesión</h2>
+        <form id="form-login">
+            <div class="campo" style="margin-bottom: 15px;">
+                <label>Usuario</label>
+                <input type="text" id="login-user" required>
+            </div>
+            <div class="campo" style="margin-bottom: 25px;">
+                <label>Contraseña</label>
+                <input type="password" id="login-pass" required>
+            </div>
+            <div class="acciones">
+                <button type="submit" class="btn-primario" style="width: 100%;">Entrar al Sistema</button>
+            </div>
+        </form>
     </div>
+</div>
+
+<div id="modal-tecnico" class="overlay" style="display: none;">
+    <div class="modal-box">
+        <h2>Añadir Técnico</h2>
+        <form id="form-nuevo-tecnico">
+            <div class="grupo"><div class="campo"><label>Nombre</label><input type="text" id="nt_nombre" required></div></div>
+            <div class="grupo">
+                <div class="campo"><label>Primer Apellido</label><input type="text" id="nt_ape1" required></div>
+                <div class="campo"><label>Segundo Apellido</label><input type="text" id="nt_ape2" required></div>
+            </div>
+            <div class="grupo">
+                <div class="campo"><label>Usuario (Login)</label><input type="text" id="nt_user" required></div>
+                <div class="campo"><label>Contraseña</label><input type="password" id="nt_pass" required></div>
+            </div>
+            <div class="acciones">
+                <button type="button" class="btn-secundario" onclick="cerrarModalTecnico()">Cancelar</button>
+                <button type="submit" class="btn-primario">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="app-window">
+    <header class="app-header">
+        <div class="app-title">📦 Control de Inventario</div>
+        <div style="position: relative;">
+            <button id="btn-usuario" class="btn-perfil">
+                <span class="icono-perfil">👤</span>
+                <span id="nombre-usuario-display">Cargando...</span>
+                <span class="flecha-abajo">▼</span>
+            </button>
+            <div id="dropdown-usuario">
+                <button onclick="cerrarSesion()">🚪 Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
 
     <div class="xp-tabs">
-        <a href="index.html" class="xp-tab active">Inicio</a>
-        <a href="Registros.html" class="xp-tab">Registros</a>
+        <a href="index.html" class="xp-tab active">Inicio y Almacén</a>
+        <a href="Registros.html" class="xp-tab">Tabla de Registros</a>
     </div>
 
-    <div class="xp-content">
-
-        <main>
-
-            <section class="seccion-formulario">
-
-                <div class="contenedor">
-
-                    <form id="formulario">
-
-                        <div class="grupo">
-                            <div class="campo">
-                                <label>Tipo de dispositivo</label>
-                                <input type="text" id="tipo" placeholder="Ej: PC, Portatil" required>
-                            </div>
-
-                            <div class="campo">
-                                <label>Marca</label>
-                                <input type="text" id="marca" placeholder="Ej: HP, Dell" required>
-                            </div>
-                        </div>
-
-                        <div class="grupo">
-                            <div class="campo">
-                                <label>Modelo</label>
-                                <input type="text" id="modelo" required>
-                            </div>
-
-                            <div class="campo">
-                                <label>Número de serie</label>
-                                <input type="text" id="serie" required>
-                            </div>
-                        </div>
-
-                        <div class="acciones">
-                            <button type="submit">Guardar Registro</button>
-                        </div>
-
-                    </form>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
-                    <script src="index.js"></script>
-
+    <div class="app-content">
+        <section class="contenedor-glass">
+            <h3 style="margin-top:0; color: white;">Añadir Nuevo Dispositivo</h3>
+            <form id="formulario">
+                <div class="grupo">
+                    <div class="campo"><label>Categoría</label><select id="tipo" required></select></div>
+                    <div class="campo"><label>Marca</label><select id="marca" required></select></div>
                 </div>
+                <div class="grupo">
+                    <div class="campo"><label>Modelo</label><select id="modelo" required></select></div>
+                    <div class="campo"><label>Número de Serie</label><input type="text" id="serie" required></div>
+                </div>
+                <div class="grupo">
+                    <div class="campo">
+                        <label>Técnico <button type="button" id="btn-añadir-tecnico" onclick="abrirModalTecnico()" style="display:none; margin-left:10px; padding:2px 8px; font-size:10px; background:#8b5cf6; color:white; border:none; border-radius:4px; cursor:pointer;">+ Nuevo</button></label>
+                        <input type="text" id="tecnico" list="lista_tecnicos_dl" required autocomplete="off">
+                        <datalist id="lista_tecnicos_dl"></datalist>
+                    </div>
+                    <div class="campo">
+                        <label>Estado Físico</label>
+                        <select id="estado_fisico" required>
+                            <option value="Para Formatear">Para Formatear</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Asignado">Asignado</option>
+                            <option value="En Reparación">En Reparación</option>
+                            <option value="Roto">Roto</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grupo">
+                    <div class="campo">
+                        <label>Estado Lógico</label>
+                        <select id="estado_logico" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>Dueño Final (Opcional)</label>
+                        <input type="text" id="asignado" list="lista_asignados_dl" autocomplete="off">
+                        <datalist id="lista_asignados_dl"></datalist>
+                    </div>
+                </div>
+                <div class="acciones"><button type="submit" class="btn-primario">Guardar Equipo</button></div>
+            </form>
+        </section>
 
-            </section>
+        <section style="margin-top: 40px;">
+            <h2 style="color: white; margin-bottom: 20px;">Gestión de Almacén (Mueve los equipos)</h2>
+            <div class="tablero-kanban">
+                <div class="columna" id="Para Formatear"><h3>Para Formatear</h3><div class="zona-drop"></div></div>
+                <div class="columna" id="Disponible"><h3>Disponible</h3><div class="zona-drop"></div></div>
+                <div class="columna" id="Asignado"><h3>Asignado</h3><div class="zona-drop"></div></div>
+                <div class="columna" id="En Reparación"><h3>En Reparación</h3><div class="zona-drop"></div></div>
+                <div class="columna" id="Roto"><h3>Roto</h3><div class="zona-drop"></div></div>
+            </div>
+        </section>
+    </div>
+</div>
 
-        </main>
-
-    </div> <!-- xp-content -->
-
-</div> <!-- xp-window -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
